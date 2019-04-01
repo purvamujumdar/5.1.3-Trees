@@ -1,0 +1,43 @@
+class Node:
+    def __init__(self, val):
+        self.left = None
+        self.right = None
+        self.val = val
+        
+        # Establish the initial root node and children
+root = Node('A')
+root.left = Node('B')
+root.right = Node('C')
+
+# Add the appropriate children for ‘B’ and ‘C’
+root.left.left = Node('D')
+root.left.right = Node('E')
+root.right.left = Node('F')
+root.right.right = Node('G')
+
+# Add the appropriate children for D E F G
+root.left.left.left = Node('H')
+root.left.left.right = Node('I')
+
+root.left.right.left = Node('J')
+root.left.right.right = Node('K')
+
+root.right.left.left = Node('L')
+root.right.left.right = Node('M')
+
+root.right.right.left = Node('N')
+root.right.right.right = Node('O')
+
+
+import sys
+    
+def get_breadth_first_nodes(root):
+    nodes = []
+    stack = [root]
+    while stack:
+        cur_node = stack[0]
+        stack = stack[1:]
+        nodes.append(cur_node)
+        for child in cur_node.get_children():
+            stack.append(child)
+    return nodes
